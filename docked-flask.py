@@ -1,11 +1,13 @@
-from flask import Flask
+from flask import Flask, request, render_template
+
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def hello_world():
-    return 'Hello my dear world!'
+    name = request.args.get('name', None)
+    return render_template('hello.html', name=name)
 
 
 if __name__ == '__main__':
